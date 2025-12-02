@@ -1,0 +1,50 @@
+# Dune build artifacts
+_build/
+_build_*
+
+# Generated binaries and objects
+*.byte
+*.native
+*.exe
+*.bc
+*.o
+*.a
+*.so
+*.cmx
+*.cmi
+*.cmo
+*.cma
+*.cmxa
+*.cmxs
+
+# Opam environment
+.opam/
+opam-*
+
+# OCamlformat
+*.corrected
+
+# Zanuda/Testing artifacts
+*.log
+*.out
+zanuda-*
+
+# OS-generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor/IDE files (VS Code, IntelliJ, etc.)
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.settings/
+.classpath
+.factorypath
