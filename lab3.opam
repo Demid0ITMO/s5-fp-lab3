@@ -9,6 +9,10 @@ depends: [
   "zanuda"
   "ocamlformat"
   "ounit2"
+  "base"
+  "stdio"
+  "cmdliner"
+  "angstrom"
   "odoc" {with-doc}
 ]
 build: [

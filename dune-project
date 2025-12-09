@@ -4,7 +4,7 @@
 
 (package
  (name lab3)
- (depends ocaml dune zanuda ocamlformat ounit2)
+ (depends ocaml dune zanuda ocamlformat ounit2 base stdio cmdliner angstrom)
 )
 
 (generate_opam_files true)
