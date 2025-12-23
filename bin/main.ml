@@ -22,6 +22,7 @@ let rec process last_x points =
     match Parser.parse_point input config with
     | Error msg ->
         Printf.eprintf "Error: %s\n" msg;
+        flush stderr;
         process last_x points
     | Ok (x, y) ->
         let new_points =

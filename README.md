@@ -100,8 +100,8 @@ echo -e "0,0\n1,1" | ./lab3 --delimeter ","
 
 ### 3.4 Формат вывода
 
-```
-linear > 0.5 0.5
-newton > 0.5 0.5
-linear > 1.0 1.0
-```
+![1](./jpg/1.png)
+
+![2](./jpg/2.png)
+
+![3](./jpg/3.png)
