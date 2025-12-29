@@ -1,4 +1,5 @@
 (executable
  (public_name lab3)
  (name main)
- (libraries parser interpolation))
+ (libraries interpolation)
+ (modules main parser))

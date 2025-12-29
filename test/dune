@@ -1,3 +1,7 @@
 (test
  (name test_lab3)
- (libraries ounit2 interpolation parser))
+ (libraries ounit2 interpolation))
+
+(cram
+ (package lab3)
+ (deps ../bin/main.exe))

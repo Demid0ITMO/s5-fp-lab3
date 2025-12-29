@@ -25,26 +25,34 @@ let rec process last_x points =
         flush stderr;
         process last_x points
     | Ok (x, y) ->
+        let n = if Parser.linear config then 2 else Parser.n config in
         let new_points =
-          match points with
-          | [] -> [ (x, y) ]
-          | _ ->
-              let n = Parser.n config in
-              if List.length points >= n then List.tl points @ [ (x, y) ]
-              else points @ [ (x, y) ]
+          let new_list = (x, y) :: points in
+          if List.length new_list > n then
+            let rec drop_last = function
+              | [] -> []
+              | [ _ ] -> []
+              | hd :: tl -> hd :: drop_last tl
+            in
+            drop_last new_list
+          else new_list
         in
 
         let start_x = match last_x with Some v -> v | None -> x in
 
         let linear =
-          if Parser.linear config && List.length new_points >= 2 then
-            gen (module Linear) start_x x (Parser.step config) new_points
+          if Parser.linear config && List.length new_points >= n then
+            gen
+              (module Linear)
+              start_x x (Parser.step config) (List.rev new_points)
           else (start_x, "")
         in
 
         let newton =
-          if Parser.newton config && List.length new_points >= Parser.n config
-          then gen (module Newton) start_x x (Parser.step config) new_points
+          if Parser.newton config && List.length new_points >= n then
+            gen
+              (module Newton)
+              start_x x (Parser.step config) (List.rev new_points)
           else (start_x, "")
         in
 
