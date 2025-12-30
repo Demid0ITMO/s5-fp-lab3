@@ -25,13 +25,12 @@ let rec process last_x points =
         flush stderr;
         process last_x points
     | Ok (x, y) ->
-        let n = if Parser.linear config then 2 else Parser.n config in
-        let new_points =
-          match points with
-          | [] -> [ (x, y) ]
-          | _ :: t when List.length t >= n - 1 -> List.rev ((x, y) :: t)
-          | t -> List.rev ((x, y) :: t)
+        let rec take n l =
+          if n <= 0 then []
+          else match l with [] -> [] | h :: t -> h :: take (n - 1) t
         in
+        let n = if Parser.linear config then 2 else Parser.n config in
+        let new_points = List.rev (take n ((x, y) :: points)) in
 
         let start_x = match last_x with Some v -> v | None -> x in
 
@@ -53,7 +52,7 @@ let rec process last_x points =
 
         Printf.printf "%s" (ol ^ on);
 
-        process (Some new_last) new_points
+        process (Some new_last) (List.rev new_points)
   with End_of_file -> ()
 
 let () =
